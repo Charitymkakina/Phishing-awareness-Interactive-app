@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phishing Awareness Quiz</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>PhishGuard</h1>
+    <p>Test your ability to identify phishing attempts and improve your cybersecurity awareness.</p>
+
+    <!-- Difficulty Selector -->
+    <label for="difficulty"><strong>Select Difficulty:</strong></label>
+    <select id="difficulty" onchange="startQuiz()">
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+
+    <!-- Quiz Area -->
+    <div class="email-box">
+      <div class="email-header" id="emailHeader"></div>
+      <div id="emailBody"></div>
+    </div>
+
+    <div class="actions">
+      <button onclick="checkAnswer('phishing')">Phishing</button>
+      <button onclick="checkAnswer('legitimate')">Legitimate</button>
+    </div>
+
+    <!-- Feedback -->
+    <div class="feedback" id="feedback"></div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard" style="display:none;">
+      <h2>Quiz Dashboard</h2>
+      <p id="finalScore"></p>
+      <p id="accuracy"></p>
+      <p id="riskScore"></p>
+    </div>
+
+    <!-- Knowledge Bar -->
+    <div class="knowledge-bar">
+      <h2>Knowledge Bar</h2>
+
+      <div class="knowledge-item">
+        <h3>Phishing</h3>
+        <p>Fraudulent emails pretending to be from trusted sources to steal sensitive data.</p>
+      </div>
+
+      <div class="knowledge-item">
+        <h3>Smishing</h3>
+        <p>Phishing attacks carried out via SMS or text messages.</p>
+      </div>
+
+      <div class="knowledge-item">
+        <h3>Vishing</h3>
+        <p>Voice-based scams where attackers impersonate legitimate organizations over phone calls.</p>
+      </div>
+
+      <div class="knowledge-item">
+        <h3>Pharming</h3>
+        <p>Redirecting users from legitimate websites to fake ones without their knowledge.</p>
+      </div>
+
+      <div class="knowledge-item">
+        <h3>Spear Phishing</h3>
+        <p>Highly targeted phishing attacks aimed at specific individuals or organizations.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

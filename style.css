@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  color: #e0f7fa;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #00e5ff;
+}
+
+.email-box {
+  background: #111;
+  border: 1px solid #00e5ff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.email-header {
+  font-weight: bold;
+  color: #80d8ff;
+  margin-bottom: 10px;
+}
+
+.actions {
+  text-align: center;
+}
+
+button {
+  background: #00e5ff;
+  border: none;
+  color: #000;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #18ffff;
+}
+
+.feedback {
+  margin-top: 15px;
+  padding: 10px;
+  background: #263238;
+  border-left: 4px solid #00e5ff;
+}
+
+.dashboard {
+  background: #102027;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.knowledge-bar {
+  margin-top: 40px;
+  background: #0b1c22;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.knowledge-item {
+  margin-bottom: 15px;
+}
+
+.knowledge-item h3 {
+  color: #18ffff;
+}
