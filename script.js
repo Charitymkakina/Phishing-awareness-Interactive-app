@@ -88,4 +88,18 @@ function showResults() {
       : accuracy >= 50
       ? "Risk Level: Medium"
       : "Risk Level: High";
+function savePerformance(score, accuracy, risk) {
+  const history = JSON.parse(localStorage.getItem("phishguardHistory")) || [];
+
+  history.push({
+    date: new Date().toLocaleDateString(),
+    difficulty: document.getElementById("difficulty").value,
+    score: score,
+    accuracy: accuracy + "%",
+    risk: risk
+  });
+
+  localStorage.setItem("phishguardHistory", JSON.stringify(history));
+}
+
 }
