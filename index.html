@@ -14,17 +14,22 @@
 
     <!-- Difficulty Selector -->
     <label for="difficulty"><strong>Select Difficulty:</strong></label>
-    <select id="difficulty" onchange="startQuiz()">
-      <option value="beginner">Beginner</option>
-      <option value="intermediate">Intermediate</option>
-      <option value="advanced">Advanced</option>
+    <select id="difficulty" onchange="startQuiz(this.value)">
+    <option value="">Select Level</option>
+    <option value="beginner"> Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
     </select>
+    
 
     <!-- Quiz Area -->
-    <div class="email-box">
-      <div class="email-header" id="emailHeader"></div>
-      <div id="emailBody"></div>
-    </div>
+    <div class="progress-container">
+  <div id="progressBar"></div>
+</div>
+    <div id="quizCard" class="quiz-card">
+      <h3 id="emailHeader"></h3> 
+      <p id="emailBody"></p>
+      
 
     <div class="actions">
       <button onclick="checkAnswer('phishing')">Phishing</button>
@@ -32,7 +37,8 @@
     </div>
 
     <!-- Feedback -->
-    <div class="feedback" id="feedback"></div>
+    <p id="feedback"></p>
+    </div>
 
     <!-- Dashboard -->
     <div class="dashboard" id="dashboard" style="display:none;">
@@ -59,7 +65,7 @@
 </div>
 <!-- Performance History -->
 <div class="performance-history">
-  <h2>📊 Performance History</h2>
+  <h2>Performance History</h2>
   <p class="history-note">
     Track your past quiz attempts and monitor your phishing detection skills over time.
   </p>
