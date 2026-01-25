@@ -168,6 +168,13 @@ button:hover {
 #progressBar {
   height: 100%;
   width: 0%;
-  background-color: #22c55e; /* green */
-  transition: width 0.5s ease;
+  background-color: #22c55e;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.question-counter {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #24d4eb; /* neutral dark */
 }

@@ -1,7 +1,9 @@
 let currentQuestion = 0;
 let score = 0;
 let questions = [];
+let selectedDifficulty = "";
 
+/*Question banks*/
 const beginnerquestions = [
   {
     header: "From: support@paypa1.com",
@@ -43,8 +45,10 @@ const advancedQuestions =[
     explanationWrong: "There are no phishing indicators present."
   }
 ];
+/*Quiz start*/
 
 function startQuiz(level) {
+  selectedDifficulty = level;
   currentQuestion = 0;
   score = 0;
 
@@ -57,14 +61,37 @@ function startQuiz(level) {
   }
   document.getElementById("dashboard").style.display = "none";
   document.getElementById("progressBar").style.width = "0%";
+document.getElementById("progressBar").style.backgroundColor = "#22c55e";
+document.getElementById("questionCounter").innerText =
+  `Question 1 of ${questions.length}`;
 
   loadQuestion();
+
 }
+/*UI helpers*/
+
 function updateProgressBar() {
   const progress = (currentQuestion / questions.length) * 100;
-  document.getElementById("progressBar").style.width = `${progress}%`;
+  const bar = document.getElementById("progressBar");
+
+  bar.style.width = `${progress}%`;
+
+  if (progress < 40) {
+    bar.style.backgroundColor = "#22c55e"; // green
+  } else if (progress < 70) {
+    bar.style.backgroundColor = "#facc15"; // yellow
+  } else {
+    bar.style.backgroundColor = "#ef4444"; // red
+  }
 }
 
+
+function updateQuestionCounter() {
+  const counter = document.getElementById("questionCounter");
+  counter.innerText = `Question ${currentQuestion + 1} of ${questions.length}`;
+}
+
+/*Question loading */
 
 function loadQuestion() {
   if (currentQuestion >= questions.length) {
@@ -72,6 +99,8 @@ function loadQuestion() {
     return;
   }
   updateProgressBar();
+  updateQuestionCounter();
+
 
   const card = document.getElementById("quizCard");
 
@@ -93,6 +122,7 @@ function loadQuestion() {
     card.classList.add("fade-in");
   }, 400);
 }
+/*Answer handling*/
 
 function checkAnswer(choice) {
   const q = questions[currentQuestion];
@@ -116,6 +146,7 @@ function checkAnswer(choice) {
   // WAIT before loading next question (THIS is the timing)
   setTimeout(loadQuestion, 1200);
 }
+/*Results and History*/
 
 function showResults() {
   document.getElementById("dashboard").style.display = "block";
@@ -137,7 +168,8 @@ function showResults() {
   document.getElementById("riskScore").innerText =
     `Risk Level: ${risk}`;
 
-  savePerformance(score, accuracy, risk);
+  savePerformance (score, accuracy, risk);
+  loadHistory();
 }
 
 function savePerformance(score, accuracy, risk) {
@@ -145,82 +177,29 @@ function savePerformance(score, accuracy, risk) {
     JSON.parse(localStorage.getItem("phishguardHistory")) || [];
 
   history.push({
-    date: new Date().toLocaleDateString(),
-    difficulty: document.getElementById("difficulty").value,
-    score: score,
+    date: new Date().toLocaleString(),
+    difficulty: selectedDifficulty,
+    score: `${score}/${questions.length}`,
     accuracy: accuracy + "%",
     risk: risk
   });
 
   localStorage.setItem("phishguardHistory", JSON.stringify(history));
 }
-function savePerformance(score, accuracy, risk) {
+function loadHistory() {
   const history =
     JSON.parse(localStorage.getItem("phishguardHistory")) || [];
 
-  history.push({
-    date: new Date().toLocaleDateString(),
-    difficulty: document.getElementById("difficulty").value,
-    score: score,
-    accuracy: accuracy + "%",
-    risk: risk
+  const container = document.getElementById("historyList");
+  container.innerHTML = "";
+
+  history.forEach(item => {
+    const div = document.createElement("div");
+    div.innerText = `${item.date} | ${item.difficulty} | ${item.score}`;
+    container.appendChild(div);
   });
+  }
 
-  localStorage.setItem("phishguardHistory", JSON.stringify(history));
-}
-function savePerformance(score, accuracy, risk) {
-  const history =
-    JSON.parse(localStorage.getItem("phishguardHistory")) || [];
 
-  history.push({
-    date: new Date().toLocaleDateString(),
-    difficulty: document.getElementById("difficulty").value,
-    score: score,
-    accuracy: accuracy + "%",
-    risk: risk
-  });
 
-  localStorage.setItem("phishguardHistory", JSON.stringify(history));
-}
-function savePerformance(score, accuracy, risk) {
-  const history =
-    JSON.parse(localStorage.getItem("phishguardHistory")) || [];
-
-  history.push({
-    date: new Date().toLocaleDateString(),
-    difficulty: document.getElementById("difficulty").value,
-    score: score,
-    accuracy: accuracy + "%",
-    risk: risk
-  });
-
-  localStorage.setItem("phishguardHistory", JSON.stringify(history));
-}
-function savePerformance(score, accuracy, risk) {
-  const history =
-    JSON.parse(localStorage.getItem("phishguardHistory")) || [];
-
-  history.push({
-    date: new Date().toLocaleDateString(),
-    difficulty: document.getElementById("difficulty").value,
-    score: score,
-    accuracy: accuracy + "%",
-    risk: risk
-  });
-
-  localStorage.setItem("phishguardHistory", JSON.stringify(history));
-}
-function savePerformance(score, accuracy, risk) {
-  const history =
-    JSON.parse(localStorage.getItem("phishguardHistory")) || [];
-
-  history.push({
-    date: new Date().toLocaleDateString(),
-    difficulty: document.getElementById("difficulty").value,
-    score: score,
-    accuracy: accuracy + "%",
-    risk: risk
-  });
-
-  localStorage.setItem("phishguardHistory", JSON.stringify(history));
-}
+  
