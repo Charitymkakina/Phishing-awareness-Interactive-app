@@ -190,16 +190,34 @@ function loadHistory() {
   const history =
     JSON.parse(localStorage.getItem("phishguardHistory")) || [];
 
-  const container = document.getElementById("historyList");
-  container.innerHTML = "";
+  const tableBody = document.getElementById("historyTableBody");
+  if (!tableBody) return;
 
-  history.forEach(item => {
-    const div = document.createElement("div");
-    div.innerText = `${item.date} | ${item.difficulty} | ${item.score}`;
-    container.appendChild(div);
-  });
+  tableBody.innerHTML = "";
+
+  if (history.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="5">No history yet</td>
+      </tr>
+    `;
+    return;
   }
 
+  history.forEach(item => {
+    const row = document.createElement("tr");
 
+    row.innerHTML = `
+      <td>${item.date}</td>
+      <td>${item.difficulty}</td>
+      <td>${item.score}</td>
+      <td>${item.accuracy}</td>
+      <td>${item.risk}</td>
+    `;
 
-  
+    tableBody.appendChild(row);
+  });
+}
+document.addEventListener("DOMcontentLoaded", () => {
+  loadHistory();
+});
